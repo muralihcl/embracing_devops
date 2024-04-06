@@ -10,3 +10,24 @@ This repository would contain all codes that are consumed during the Embracing D
 | puppet      | This directory contains the files used during puppet sessions |
 | chef        | This directory contains the files used during chef sessions |
 | terraform   | This directory contains the files used during terraform sessions |
+
+## Use the Vagrantfile examples
+(Assuming the github repository is cloned and we are inside the created directory)
+
+vagrant/rocky9/Vagrantfile
+   ```
+   cd vagrant/rocky9
+   vagrant up
+   ```
+
+vagrant/ubuntu_focal/Vagrantfile
+   ```
+   cd vagrant/ubuntu_focal
+   vagrant up
+   ```
+
+vagrant/trusty/Vagrantfile
+   ```
+   cd vagrant/trusty
+   vagrant up
+   ```
