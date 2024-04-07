@@ -46,3 +46,15 @@ Some common commands to try with vagrant
 
 ```vagrant init ubuntu/focal64``` Initialize/create a default Vagrantfile in the current directory with ubuntu/folcal64 as the box name.
 
+## Utilize the Dockerfile examples
+(Assuming the github repository is cloned and we are inside the created directory)
+
+docker/Dockerfile file (This contains instructions to build a custom NGINX docker image from vanilla ubuntu image)
+
+```
+cd docker
+docker build -t"nginx:v1" .
+```
+
+
+
