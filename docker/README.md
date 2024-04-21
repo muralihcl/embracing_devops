@@ -29,14 +29,14 @@ Though the ubuntu snap can help to install a version that is available in the sn
 
 nginx/Dockerfile file (This contains instructions to build a custom NGINX docker image from vanilla ubuntu image. The DOT at the end instructs the build command that the Dockerfile exists in the current directory)
 
-```
-cd nginx
-docker build -t"nginx:v1" .
+```bash
+$ cd nginx
+$ docker build -t"nginx:v1" .
 ```
 
 Post this build, the system will have an image nginx:v1. One can run the new container image to start it. The option --name mynginx gives the custom name mynginx to the container that is run. All the container level commands can be run against the name as well, just like the container ID. Hence, having a fixed name can turn out to be useful where we don't have to get the container ID every time we need to run a container specific command.
 
-```
+```bash
 $ docker run --rm --name mynginx -itd nginx:v2
 4680031457a258d39ed4302fe3261393e536f600f96ba43c64e23ed0e3b89ef0
 $ docker ps
@@ -47,7 +47,7 @@ $
 
 The 80/tcp under the PORTS column comes from the EXPOSE command present in the Dockerfile. Now that we are aware that the port 80 is exposed from the container, we can use port mapping to expose the port to the localhost. The curl command hitting the local host's IP address on port 8080 displays a response coming from NGINX. This confirms port mapping within docker.
 
-```
+```bash
 $ docker run --rm --name mynginx -itd -p 8080:80 nginx:v2
 2e5f5554548570e472001b79d367177a1b7cfc6469ee7b27fc95df5f3278ee6c
 $ curl http://192.168.56.24:8080
