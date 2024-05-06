@@ -1,0 +1,22 @@
+---
+- name: Create a Service object from an inline definition
+  kubernetes.core.k8s:
+    state: present
+    definition:
+      apiVersion: v1
+      kind: Service
+      metadata:
+        labels:
+          app: web
+        name: web-service
+        namespace: training
+      spec:
+        ports:
+        - port: 80
+          protocol: TCP
+          targetPort: 80
+          nodePort: 30001
+        selector:
+          app: web
+        type: NodePort
+
