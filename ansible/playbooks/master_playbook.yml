@@ -1,0 +1,25 @@
+---
+- name: Work with kubernetes using ansible
+  hosts: all
+  gather_facts: false
+  tasks:
+    - name: Get kubernetes cluster information
+      kubernetes.core.k8s_cluster_info:
+      register: reg_k8s_info
+
+    - name: Display cluster status
+      ansible.builtin.debug:
+        msg: "{{ reg_k8s_info }}"
+
+    - name: Create a k8s namespace
+      ansible.builtin.include_tasks:
+        file: namespace_task.yml
+
+    - name: Create a pod
+      ansible.builtin.include_tasks:
+        file: pod_task.yml
+
+    - name: Create a service
+      ansible.builtin.include_tasks:
+        file: service_task.yml
+
