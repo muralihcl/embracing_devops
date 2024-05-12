@@ -33,6 +33,8 @@ Environment="JENKINS_PORT=8081"
 
 Initial configuration needs to be done through a web server. We can open the web page from http://192.168.56.33:8080
 
+
+
 ![Unlock Jenkins, the very first screen](unlock_jenkins.png)
 
 One the first page, the file that can be viewed for the initial password would be displayed.
@@ -65,61 +67,107 @@ If required, log in to Jenkins with the credentials of the user you just created
 
 We can start with Dashboard => New Item. A free style project would enable us to witness what actually happens in the pipelining.
 
+
 ![Create a new item](new_item.png)
+
 
 Select the FreeStyle Project and provide a description.
 
+
 ![MyFreeStyleProject](MyFreeStyleProject.png)
+
 
 Under the configuration, select additional configuration according to the requirement.
 
+
 ![Configure](FSP_Configure.png)
+
 
 The build triggers and build environments are helpful in defining how the build should initiate (manually triggered or automated) and using what environment should be the build process to be triggered.
 
+
 ![Build Triggers and Build Environments](Build_Triggers.png)
 
+
 In our example, we are just using an execute shell option. Any Linux command can be run on this.
+
+
 ![Build Steps - Execute Shell](Build_Steps_Shell.png)
 
+
 If needed, additional build actions canb e added until all the actions are completed.
+
+
 ![Build Steps Execute Shell](Build_Steps_Execute_Shell.png)
 
+
 We can perform varied list of post build actions. One of them is to clean up workspace.
+
+
 ![Add Post Build Action](Add_Post_Build_Action.png)
 
+
 Finally, once done, save the Free Style Project and we can then use build option to run it.
+
+
 ![Save FreeStyle Project](Save_FSP.png)
 
+
 We can now run the Free Style project by clicking on Build Now
+
+
 ![Build Now](Build_Now.png)
 
+
 Every run can be looked into by detail using the Console Output of the run (click the number from the build history section)
-![alt text](Console_Output.png)
+
+
+![Console Output](Console_Output.png)
+
 
 The status of the free style project is not very encouraging. Yet, this allows us to make use of Jenkins abilities to pipeline various manual steps which otherwise we should have been doing.
+
+
 ![FreeStyle Project Status](FSP_Status.png)
+
 
 ## Create first Pipeline project
 
 We can start with Dashboard => New Item. A Pipeline project would enable us to witness the actual ability of the Jenkins tool.
 
+
 ![Create a new item](new_item.png)
 
+
 Select the Pipeline Project
+
+
 ![My Pipeline Project](MyPipelineProject.png)
 
+
 Include the basic configuration
+
+
 ![My Pipeline Project Configuration](MPP_Configure.png)
 
+
 Specify the build triggers for the pipeline project
+
+
 ![Build Triggers for Pipeline Project](MPP_Build_Triggers.png)
 
+
 Pipeline option can be using a embedded Pipeline Script or a script from SCM (eg. GitHub)
+
+
 ![Pipeline Option](Pipeline.png)
 
+
 In case of pipeline script, we need to specify the pipeline script in the box meant for that.
+
+
 ![Pipeline Script](PipeLine_Script.png)
+
 
 The actual content might look similar to this.
 ```bash
@@ -147,22 +195,42 @@ pipeline {
     }
 }
 ```
+
+
 Save the settings to enable the pipeline Project
+
+
 ![Save Pipeline](PipeLineScript_Save.png)
 
+
 We can again click on Build now to start the pipeline
+
+
 ![Build Now](Build_Now_Pipeline_Script.png)
 
+
 The console outputs let us know how the task got completed
+
+
 ![Console Output](MPP_Console_Output.png)
 
+
 In case if we wish to specify a script from SCM (GitHub), we can do so by specifying the GitHub project path and specify the branch, script name and save the settings.
+
+
 ![Pipeline Script from SCM](Pipeline_Script_from_SCM.png)
+
 
 ![Pipeline Script Name and Save](Pipeline_Script_From_SCM_Save.png)
 
+
 Once saved, the build now can trigger the Jenkins Pipeline and from the console output, it will be clear that the Jenkinsfile (Script name) is indeed fetched fromthe GitHub repository link provided before.
+
+
 ![Pipeline script from SCM console output](Pipeline_Script_from_SCM_Console_Output.png)
 
+
 In comparison to the Free Style project, Pipeline Projects have better history visualization.
+
+
 ![Pipeline project History](Pipeline_project_History.png)
