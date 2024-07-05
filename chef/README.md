@@ -15,7 +15,7 @@ Reboot the server and the client
 ## Install Chef infra server on Ubuntu 22.04 Server and perform first reconfiguration
 
 ```bash
-$ wget https://packages.chef.io/files/stable/chef-server/15.9.27/ubuntu/18.04/chef-server-core_15.9.27-1_amd64.deb
+$ wget https://packages.chef.io/files/stable/chef-server/15.9.27/ubuntu/22.04/chef-server-core_15.9.27-1_amd64.deb
 $ sudo dpkg -i chef-server-core_15.9.27-1_amd64.deb
 $ sudo chef-server-ctl reconfigure
 
@@ -33,6 +33,8 @@ $ sudo chef-server-ctl user-create chefadmin Chef Admin chefadmin@example.com 'p
 $ sudo chef-server-ctl org-create mkoptima 'MKOptima InnoSolutions' --association_user chefadmin --filename chef-repo/.chef/mkoptima-validator.pem
 ```
 ## Install chef-manage, a web server that can help to manage Chef Infra Server using a web browser
+
+*Note: This might not even work with latest releases as the chef-manage is retired. Except for the GUI interface, this is not needed.*
 
 ```bash
 $ sudo chef-server-ctl install chef-manage
@@ -52,7 +54,7 @@ $ vim chef-repo/.chef/config.rb (The critical pieces here are node_name, client_
 current_dir = File.dirname(__FILE__)
 log_level :info
 log_location STDOUT
-node_name 'ubs-chef'
+node_name 'chefadmin'
 client_key "chefadmin.pem"
 validation_client_name 'mkoptima-validator'
 validation_key "mkoptima-validator.pem"
@@ -69,8 +71,8 @@ Test the workstation to the server connectivity and bootstrap the server and the
 cd ~/chef-repo
 $ knife ssl fetch
 $ knife ssl check
-$ knife bootstrap ubs-chef.example.com -x root -P 'Password@123' --node-name ubs-chef
-$ knife bootstrap ubs-minion.example.com -x root -P 'Password@123' --node-name ubs-minion
+$ knife bootstrap ubs-chef.example.com -U root -P 'password' --node-name ubs-chef
+$ knife bootstrap ubs-minion.example.com -U root -P 'password' --node-name ubs-minion
 $ knife node list
 ```
 
